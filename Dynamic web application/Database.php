@@ -16,12 +16,12 @@ class Database
 		]);
 	}
 
-	public function query($query, $parms=[])
+	public function query($query, $params=[])
 	{
 
 		// $pdo=new PDO($dsn);
 		$this->statment = $this->connection->prepare($query);
-		$this->statment->execute($parms);
+		$this->statment->execute($params);
 		// return $statment;
 		return $this;
 	}

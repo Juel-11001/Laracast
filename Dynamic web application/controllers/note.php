@@ -15,8 +15,9 @@ $note = $db->query('select * from posts where id = :id', ['id' => $_GET['id']])-
 // }
 
 $currentUserId=1;
-if($note['user_id'] !== $currentUserId ){
-	abort(Response::FORBIDDEN);
-}
+// if($note['user_id'] !== $currentUserId ){
+// 	abort(Response::FORBIDDEN);
+// }
+authorize($note['user_id'] === $currentUserId);
 
 require "views/note.view.php";
