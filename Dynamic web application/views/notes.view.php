@@ -11,6 +11,9 @@
                 <a href="/note?id=<?= $note['id'] ?>" class="text-blue-500 hover:underline"><?= $note['body'] ?></a>
             </li>
 		<?php endforeach; ?>
+        <p class=" mt-4">
+            <a href="/note/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition ease-in ">Create Notes</a>
+        </p>
     </div>
 </main>
 <?php require('partials/footer.php') ?>
