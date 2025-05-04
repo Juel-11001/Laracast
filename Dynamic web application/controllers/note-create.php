@@ -1,21 +1,16 @@
 <?php
 $heading = 'Notes';
-$config = require('config.php');
+$config = require 'config.php';
 $db = new Database($config['mysql_database'], 'valet', '11001');
 // dd($_SERVER);
 
-// if($_SERVER['REQUEST_METHOD'] === 'POST'){
-// 	dd("you submited the form?");
-// }
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$errors = [];
-	if (strlen($_POST['note_body']) === 0) {
-		$errors['note_body'] = 'Body is required?';
-	}
-	if(strlen($_POST['note_body'])>100){
-		$errors['note_body']='The body can not be more than 100 char?';
-	}
+$errors = [];
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if (!Validator::string($_POST['note_body'], 1, 500)) {
+		$errors['note_body'] = 'A Body of more than 1 and 500 is  required?';
+	}
+	
 	if (empty($errors)) {
 		$db->query('INSERT INTO posts(user_id, body) VALUES (:user_id, :body)', [
 			'user_id' => 1,
@@ -24,4 +19,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 }
 
-require "views/note-create.view.php";
+// require "views/note-create.view.php";
+require __DIR__ . '/../views/note-create.view.php';

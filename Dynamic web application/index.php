@@ -2,6 +2,7 @@
 require 'Database.php';
 require 'functions.php';
 require 'Response.php';
+require 'Validator.php';
 
 // require 'views/index.view.php';
 // dd($_SERVER);
