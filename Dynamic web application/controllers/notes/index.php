@@ -1,13 +1,14 @@
 <?php
 
-$config = require('config.php');
+use Core\Database;
+
+$config = require base_path( 'config.php');
 
 $db = new Database($config['mysql_database'], 'valet', '11001');
 
-$heading='Notes';
-// $id=$_GET['id'];
-// $query = "select*from posts where user_id=1";
 $notes = $db->query("select*from posts where user_id=1")->get();
-// dd($notes);
 
-require "views/notes/index.view.php";
+view('notes/index.view.php', [
+	'heading'=>'My Notes Lists',
+	'notes'=>$notes
+]);

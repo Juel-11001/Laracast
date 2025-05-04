@@ -1,5 +1,7 @@
 <?php
 // require 'functions.php';
-$heading = 'home';
+// $heading = 'home';
 
-require "views/index.view.php";
+view("index.view.php",[
+	'heading'=>'Home'
+]);

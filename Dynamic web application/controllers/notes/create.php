@@ -1,6 +1,9 @@
 <?php
-$heading = 'Notes';
-$config = require 'config.php';
+
+use Core\Database;
+use Core\Validator;
+
+$config = require base_path('config.php');
 $db = new Database($config['mysql_database'], 'valet', '11001');
 // dd($_SERVER);
 
@@ -19,5 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 }
 
-// require "views/note-create.view.php";
-require'views/notes/create.view.php';
+view('notes/create.view.php', [
+	'heading' => 'My Notes',
+	'errors' => $errors,
+]);

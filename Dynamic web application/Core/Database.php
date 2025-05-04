@@ -1,5 +1,6 @@
 <?php
-
+namespace Core;
+use PDO;
 //connection to the database and execute and query:
 class Database
 {
@@ -45,12 +46,3 @@ class Database
 		return $result;
 	}
 }
-
-
-// $dsn= "mysql:host=localhost;port=3306;user=valet;password=11001;dbname=laracast_demo";
-// $pdo=new PDO($dsn, 'valet', '11001');
-// $pdo=new PDO($dsn);
-// $statment=$pdo->prepare("select*from posts");
-// $statment->execute();
-// $posts=$statment->fetchAll(PDO::FETCH_ASSOC);
-// $posts=$statment->fetchAll(PDO::FETCH_ASSOC);

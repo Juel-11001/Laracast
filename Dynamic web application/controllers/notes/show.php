@@ -1,9 +1,11 @@
 <?php
 
-$config = require('config.php');
+use Core\Database;
 
-$db = new Database($config['mysql_database'], 'valet', '11001');
-$heading = "note";
+$config = require base_path( 'config.php');
+
+$db = new Database ($config['mysql_database'], 'valet', '11001');
+// $heading = "note";
 // $heading='Notes';
 // $id = $_GET['id'];
 // dd($id);
@@ -20,4 +22,8 @@ $currentUserId=1;
 // }
 authorize($note['user_id'] === $currentUserId);
 
-require "views/notes/show.view.php";
+// require "views/notes/show.view.php";
+view('notes/show.view.php', [
+	'heading'=>'Notes',
+	'note'=>$note
+]);
