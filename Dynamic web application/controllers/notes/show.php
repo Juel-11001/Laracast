@@ -2,28 +2,27 @@
 
 use Core\Database;
 
-$config = require base_path( 'config.php');
+$config = require base_path('config.php');
 
-$db = new Database ($config['mysql_database'], 'valet', '11001');
-// $heading = "note";
-// $heading='Notes';
-// $id = $_GET['id'];
-// dd($id);
-// $query = "select*from posts where user_id= :id";
-$note = $db->query('select * from posts where id = :id', ['id' => $_GET['id']])->findOrFail();
-// dd($note);
-// if(! $note){
-// 	abort();
-// }
+$db = new Database($config['mysql_database'], 'valet', '11001');
 
-$currentUserId=1;
-// if($note['user_id'] !== $currentUserId ){
-// 	abort(Response::FORBIDDEN);
-// }
-authorize($note['user_id'] === $currentUserId);
+$currentUserId = 1;
 
-// require "views/notes/show.view.php";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$note = $db->query('select * from posts where id = :id', ['id' => $_GET['id']])->findOrFail();
+
+	authorize($note['user_id'] === $currentUserId);
+
+	$db->query('delete from posts where id = :id', ['id' => $_GET['id']]);
+	header('location: /notes');
+	exit();
+} else {
+	$note = $db->query('select * from posts where id = :id', ['id' => $_GET['id']])->findOrFail();
+
+	authorize($note['user_id'] === $currentUserId);
+}
+
 view('notes/show.view.php', [
-	'heading'=>'Notes',
-	'note'=>$note
+	'heading' => 'Notes',
+	'note' => $note
 ]);
