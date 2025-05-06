@@ -8,6 +8,7 @@
 		<p class="ml-2 mx-auto"><?=  $note['body'] ?></p>
         <form  method="post" class="mt-4">
             <input type="hidden" name="id" value="<?= $note['id'] ?>">
+            <input type="hidden" name="_method" value="DELETE">
             <button  type="submit" class="text-red-500">Delete</button>
         </form>
 	</div>
