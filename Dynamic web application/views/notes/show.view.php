@@ -10,6 +10,7 @@
             <input type="hidden" name="id" value="<?= $note['id'] ?>">
             <input type="hidden" name="_method" value="DELETE">
             <button  type="submit" class="text-red-500">Delete</button>
+            <a  href="/notes/edit?id=<?= $note['id'] ?>" class="text-gray-500 border rounded px-4 py-2 ml-4">Edit</a>
         </form>
 	</div>
 </main>
