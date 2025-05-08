@@ -1,7 +1,7 @@
 <?php
 
-use Core\Database;
-use Core\Validator;
+// use Core\Database;
+// use Core\Validator;
 
 // $config = require base_path('config.php');
 // $db = new Database($config['mysql_database'], 'valet', '11001');

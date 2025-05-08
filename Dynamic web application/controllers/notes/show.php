@@ -1,10 +1,12 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
-$config = require base_path('config.php');
-
-$db = new Database($config['mysql_database'], 'valet', '11001');
+// $config = require base_path('config.php');
+//
+// $db = new Database($config['mysql_database'], 'valet', '11001');
+$db=App::resolve(Database::class);
 
 $currentUserId = 1;
 
