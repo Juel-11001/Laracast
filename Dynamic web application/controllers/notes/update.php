@@ -11,11 +11,13 @@ $note = $db->query('select * from posts where id = :id', ['id' => $_POST['id']])
 //authrozed the user:
 authorize($note['user_id'] === $currentUserId);
 
+//validation :
 $errors = [];
 
 if (!Validator::string($_POST['note_body'], 1, 500)) {
 	$errors['note_body'] = 'A Body of more than 1 and 500 is  required?';
 }
+//if no error then update the data :
 
 if(count($errors)){
 	return view('notes/edit.view.php',[
