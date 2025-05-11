@@ -33,7 +33,7 @@ if ($user) {
 	// if not exists then store the data into database:
 	$db->query('insert into users (email, password) values (:email, :password)', [
 		'email' => $email,
-		'password' => $password
+		'password' => password_hash($password, PASSWORD_BCRYPT)
 	]);
 	$_SESSION['user'] = [
 		'email' => $email
