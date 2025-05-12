@@ -9,7 +9,7 @@ class LoginForm
 	public function validate($email, $password)
 	{
 		if (!Validator::email($email)) {
-			$this->errors['email'] = "Please Provide a Valid Eamil !";
+			$this->errors['email'] = "Please Provide a Valid Email !";
 		}
 		if (!Validator::string($password)) {
 			$this->errors['password'] = 'Please provide valid password';
@@ -24,6 +24,6 @@ class LoginForm
 
 	public function error($field, $message)
 	{
-		return $this->errors[$field]=$message;
+		 return $this->errors[$field]=$message;
 	}
 }

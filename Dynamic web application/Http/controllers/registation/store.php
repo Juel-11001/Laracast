@@ -1,11 +1,13 @@
 <?php
 
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 $db = APP::resolve(Database::class);
 $email = $_POST['email'];
 $password = $_POST['password'];
+$auth= new Authenticator();
 //validate form input :
 $errors = [];
 if (! Validator::email($email)) {
@@ -35,7 +37,7 @@ if ($user) {
 		'email' => $email,
 		'password' => password_hash($password, PASSWORD_BCRYPT)
 	]);
-	login([
+	$auth->login([
 		'email'=>$email
 	]);
 	header('location: /');

@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Authenticator;
 use Core\Database;
+use Core\Session;
 use Http\Forms\LoginForm;
 
 $db = App::resolve(Database::class);
@@ -16,13 +17,15 @@ if ($form->validate($email, $password)) {
 	if ($auth->attempt($email, $password)) {
 		redirect('/');
 	}
-	
-	$form->error('errors', "No matching account found for that email address and password!");
+	$form->error('email', "No matching account found for that email address and password!");
 
 }
-return view('session/create.view.php', [
-	'email' => $form->errors()
-]);
+// $_SESSION['_flash']['errors']=$form->errors();
+Session::flash('errors', $form->errors());
+redirect('/login');
+// return view('session/create.view.php', [
+// 	'errors' => $form->errors()
+// ]);
 
 //validate form input :
 // $errors = [];
@@ -37,7 +40,6 @@ return view('session/create.view.php', [
 // 		'errors' => $errors
 // 	]);
 // }
-
 
 // return view('session/create.view.php', [
 // 	'errors' => [
