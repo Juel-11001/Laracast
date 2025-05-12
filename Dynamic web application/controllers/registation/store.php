@@ -3,7 +3,7 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
-
+$db = APP::resolve(Database::class);
 $email = $_POST['email'];
 $password = $_POST['password'];
 //validate form input :
@@ -20,7 +20,7 @@ if (!empty($errors)) {
 	]);
 }
 // check the user email is already exists:
-$db = APP::resolve(Database::class);
+
 $user = $db->query('select * from users where email =:email', [
 	'email' => $email
 ])->find();
@@ -35,9 +35,9 @@ if ($user) {
 		'email' => $email,
 		'password' => password_hash($password, PASSWORD_BCRYPT)
 	]);
-	$_SESSION['user'] = [
-		'email' => $email
-	];
+	login([
+		'email'=>$email
+	]);
 	header('location: /');
 	exit();
 }
